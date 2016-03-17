@@ -20,4 +20,4 @@ Hmm, well as of now, we're not loading too much data, so it won't be that much a
 Right now, there's just a screen that shows up on error that will tell the user to try reloading the page. It's not really doing anything extra to handle the api speed at the moment, although I can add a custom timeout if necessary.
 
 ###Anything else you want to share about your solution or the problem?
-It was fun! There's so much I would add or dive deeper into, so this is really just the quickest possible MVP-draft I could get out there. 
+It was fun! There's so much I would add or dive deeper into, so this is really just the quickest possible MVP-draft I could get out there.

@@ -1,6 +1,6 @@
 "use strict"
 
-document.addEventListener("scroll", (e) => {
+document.addEventListener("scroll", function() {
   let splash = document.getElementById("splash")
   let nav = document.querySelector("nav")
 
