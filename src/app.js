@@ -13,6 +13,10 @@ const getStaffPicks = (url) => {
         let response = JSON.parse(req.responseText)
         resolve(response)
       }
+
+      if (req.readyState == 4 && req.status != 200) {
+        reject()
+      }
     }
 
     req.open("GET", url, true)
@@ -25,5 +29,10 @@ getStaffPicks("http://vimeo.com/api/v2/channel/staffpicks/videos.json").then((re
   ReactDOM.render(
     <VideoFeed videos={response} />,
     document.getElementById('react-app')
+  )
+}).catch((err) => {
+  ReactDOM.render(
+    <div>Sorry! There has been a connection error. Try reloading the page.</div>,
+    document.getElementById('notice')
   )
 })

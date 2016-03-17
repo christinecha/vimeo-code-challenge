@@ -119,6 +119,18 @@ nav .nav-right { float: right; margin: 10px 30px; }
 
 /* Feed */
 
+#notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 150px;
+  z-index: 50;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+
 #react-app {
   padding-top: 330px;
   max-width: 1400px;
