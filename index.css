@@ -130,6 +130,10 @@ nav .nav-right { float: right; margin: 10px 30px; }
   width: 100%;
 }
 
+#player {
+  max-width: 100% !important;
+}
+
 .featuredVideoArrow {
   vertical-align: top;
   margin: 240px 20px;
@@ -159,3 +163,23 @@ nav .nav-right { float: right; margin: 10px 30px; }
 
 .videoPreview h3 { font-size: 13px; }
 .videoPreview p { font-size: 10px; }
+
+/* MOBILE */
+
+@media (max-width: 1000px) {
+  .hideForMobile {
+    display: none;
+  }
+
+  #splash h2 {
+    font-size: 100px;
+  }
+
+  #splash p {
+    padding: 50px;
+  }
+
+  .featuredVideoArrow {
+    display: none !important;
+  }
+}
