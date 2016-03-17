@@ -1,8 +1,8 @@
 "use strict"
 
 document.addEventListener("scroll", function() {
-  let splash = document.getElementById("splash")
-  let nav = document.querySelector("nav")
+  var splash = document.getElementById("splash")
+  var nav = document.querySelector("nav")
 
   splash.style.top = window.scrollY <= 250 ? (-(window.scrollY * 2)) + 'px' : "-500px"
   splash.style.opacity = window.scrollY < 250 ? (500 - (window.scrollY * 2)) / 500 : 0
