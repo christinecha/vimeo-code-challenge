@@ -9,7 +9,7 @@ export class VideoFeature extends React.Component {
 
     this.state = {
       descriptionExpanded: false,
-      screenWidth: screenWidth
+      screenWidth: window.innerWidth
     }
   }
 
@@ -18,7 +18,7 @@ export class VideoFeature extends React.Component {
       this.setState({
         screenWidth: window.innerWidth
       })
-    })
+    }.bind(this))
   }
 
   componentDidUpdate(prevProps) {

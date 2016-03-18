@@ -129,6 +129,7 @@ nav .nav-right { float: right; margin: 10px 30px; }
   z-index: 50;
   background-color: rgba(0,0,0,0.8);
   color: white;
+  display: none;
 }
 
 #react-app {
@@ -224,5 +225,5 @@ nav .nav-right { float: right; margin: 10px 30px; }
 }
 
 @media (max-width: 880px) {
-  
+
 }
