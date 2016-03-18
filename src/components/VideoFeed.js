@@ -52,9 +52,9 @@ export class VideoFeed extends React.Component {
     let currentHeight = feed.clientHeight
 
     if (this.state.buttonText == "show more") {
-      feed.style.height = currentHeight + 240 + 'px'
+      feed.style.height = currentHeight + 220 + 'px'
     } else {
-      feed.style.height = currentHeight - 240 + 'px'
+      feed.style.height = currentHeight - 220 + 'px'
     }
 
     if (currentHeight >= 600) {

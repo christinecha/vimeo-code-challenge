@@ -95,7 +95,7 @@ nav .nav-right { float: right; margin: 10px 30px; }
   height: 120%;
   top: -100px;
   right: -500%;
-  background-image: url('./src/assets/still2.png');
+  background-image: url('./src/assets/still1.png');
   background-position: 50% 30%;
   transform-origin: 54% 0;
   transform: rotate(3deg);
@@ -167,10 +167,11 @@ nav .nav-right { float: right; margin: 10px 30px; }
   color: white;
 }
 
-.videoPreview h3, p {
-  max-width: 100%;
-  text-overflow: ellipsis;
+.videoPreview h3, .videoPreview p {
+  max-width: 200px;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .videoPreview h3 { font-size: 13px; }
