@@ -2,11 +2,14 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import * as helper from './helpers.js'
 import { VideoFeed } from './components/VideoFeed'
 
-const getStaffPicks = (url) => {
+var access_token = "5a34d097ebec40b64f49e1e873010976"
+
+const apiCall = (url, obj) => {
   return new Promise((resolve, reject) => {
-    const req = new XMLHttpRequest()
+    const req = new XMLHttpRequest(obj)
 
     req.onreadystatechange = () => {
       if (req.readyState == 4 && req.status == 200) {
@@ -24,10 +27,29 @@ const getStaffPicks = (url) => {
   })
 }
 
-getStaffPicks("http://vimeo.com/api/v2/channel/staffpicks/videos.json").then((response) => {
-  console.log(response)
+let channelName = helper.getURLparam(location, "channel", "staffpicks")
+let channelInfoURL = "https://api.vimeo.com/channels/" + channelName + "?access_token=" + access_token
+let channelVideosURL = "https://api.vimeo.com/channels/" + channelName + "/videos?access_token=" + access_token
+
+// get channel videos
+apiCall(channelInfoURL).then((channel) => {
+  document.getElementById("current-channel--name").innerHTML = channel.name
+  let formattedName = channel.name
+  if (channelName == "staffpicks") {
+    formattedName = "staff picks"
+  } else {
+    formattedName = !channel.name || channel.name.length > 25 ? "featured channels" : channel.name
+  }
+  document.querySelector("#splash h2").innerHTML = formattedName
+})
+
+// get channel videos
+apiCall(channelVideosURL, {
+  filter: "embeddable",
+  filter_embeddable: true
+}).then((response) => {
   ReactDOM.render(
-    <VideoFeed videos={response} />,
+    <VideoFeed videos={response.data} />,
     document.getElementById('react-app')
   )
 }).catch((err) => {

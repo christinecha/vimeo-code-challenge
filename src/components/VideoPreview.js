@@ -8,9 +8,9 @@ export class VideoPreview extends React.Component {
 
     return (
       <div className="videoPreview">
-        <a href={video.url}><img src={video.thumbnail_medium} /></a>
-        <a href={video.url}><h3>{video.title}</h3></a>
-        <p>from <a href={video.user_url}>{video.user_name}</a></p>
+        <a href={video.link}><img src={video.pictures.sizes[1].link} /></a>
+        <a href={video.link}><h3>{video.name}</h3></a>
+        <p>from <a href={video.user.link}>{video.user.name}</a></p>
       </div>
     )
   }

@@ -30,7 +30,7 @@ export class VideoFeature extends React.Component {
   }
 
   getDescription() {
-    return this.props.video.description.replace(/<br \/>/g, '\n')
+    return this.props.video ? this.props.video.description.replace(/<br \/>/g, '\n') : null
   }
 
   toggleDescription() {
@@ -68,7 +68,7 @@ export class VideoFeature extends React.Component {
         textOverflow: "ellipsis",
       },
       readMore: {
-        display: video.description.length > 100 ? "block" : "none",
+        display: video.description && video.description.length > 100 ? "block" : "none",
         position: descriptionExpanded || screenWidth < 820 ? null : "absolute",
         right: "30px",
         margin: descriptionExpanded || screenWidth < 820 ? "20px 0" : "-22px 0"
@@ -84,22 +84,22 @@ export class VideoFeature extends React.Component {
         </button>
         <div style={styles.videoFeature}>
           <iframe
-            src={helper.getPlayerURL(video.url)}
+            src={video ? helper.getPlayerURL(video.uri) : null}
             width={screenWidth > 820 ? "800" : screenWidth}
             height={screenWidth > 820 ? "500" : "250"}
             frameBorder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
             allowFullScreen>
           </iframe>
           <div style={styles.descriptionContainer}>
-            <h3>{video.title}</h3>
+            <h3>{video ? video.name : null}</h3>
             <p style={styles.description}>{this.getDescription()}</p>
             <button style={styles.readMore} onClick={() => this.toggleDescription()}>
               { this.state.descriptionExpanded ? "collapse" : "read more" }
             </button>
             <div className="stats">
-              <span className="plays">{ video.stats_number_of_plays } <i className="fa fa-play"></i></span>
-              <span className="likes">{ video.stats_number_of_likes } <i className="fa fa-heart"></i></span>
-              <span className="comments">{ video.stats_number_of_comments } <i className="fa fa-comment"></i></span>
+              <span className="plays">{ video && video.stats.plays ? helper.groupByThousands(video.stats.plays) : null} plays </span>
             </div>
           </div>
         </div>

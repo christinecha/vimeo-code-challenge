@@ -8,11 +8,10 @@ export class VideoFeed extends React.Component {
 
   constructor(props) {
     super(props)
-    let videoKeys = Object.keys(this.props.videos)
 
     this.state = {
-      featuredVideo: Math.round(Math.random() * (videoKeys.length - 1)),
-      numOfVideos: videoKeys.length,
+      featuredVideo: Math.round(Math.random() * (this.props.videos.length - 1)),
+      numOfVideos: this.props.videos.length,
       buttonText: "show more"
     }
   }
@@ -38,11 +37,10 @@ export class VideoFeed extends React.Component {
 
   getVideos() {
     const { videos } = this.props
-    const videoKeys = Object.keys(videos)
 
-    return videoKeys.map((key, i) => {
+    return videos.map((video, i) => {
       return (
-        <VideoPreview video={videos[key]} key={i} />
+        <VideoPreview video={video} key={i} />
       )
     })
   }

@@ -78,28 +78,85 @@ nav ul li:hover {
 
 nav .nav-right { float: right; margin: 10px 30px; }
 
-/* Splash */
+/* Channel Picker */
 
-#splash {
-  width: 100%;
-  height: 500px;
+#channel-picker {
+  z-index: 100;
   position: fixed;
-  text-align: center;
+  right: 30px;
+  top: 80px;
+  width: 220px;
+  height: 100px;
   color: white;
 }
 
-#splash:after {
-  content: '';
-  position: absolute;
-  width: 1100%;
-  height: 120%;
-  top: -100px;
-  right: -500%;
+#channel-picker p {
+  font-size: 10px;
+  font-family: "Bree Serif", serif;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  text-shadow: 0 0 3px #000;
+}
+
+#channel-picker #current-channel {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: rgba(0,0,0,0.8);
+  cursor: pointer;
+}
+
+#channel-picker #current-channel i { float: right; }
+
+#all-channels {
+  padding: 0 10px;
+  margin: 5px 0;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.dropdown {
+  border-top: 8px solid rgba(0,0,0,0.8);
+  border-bottom: 8px solid rgba(0,0,0,0.8);
+  display: none;
+  height: 0;
+  max-height: 310px;
+  overflow: scroll;
+  transition: all .5s;
+}
+
+.dropdown-option {
+  margin: 8px 0;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 14px;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  font-weight: bold;
+  line-height: 14px;
+  color: #00aeef;
+}
+
+/* Splash */
+
+#splash {
+  width: 105%;
+  margin: 0 auto;
+  position: fixed;
+  text-align: center;
+  color: white;
+  height: 500px;
+  top: -30px;
+  left: -2.5%;
   background-image: url('./src/assets/still1.png');
   background-position: 50% 30%;
   transform-origin: 54% 0;
-  transform: rotate(3deg);
-  z-index: -1;
+  transform: rotate(2deg);
+  z-index: 50;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
@@ -107,7 +164,8 @@ nav .nav-right { float: right; margin: 10px 30px; }
   font-family: 'Damion', sans-serif;
   font-weight: normal;
   font-size: 150px;
-  margin-top: 100px;
+  margin-top: 140px;
+  text-transform: lowercase;
 }
 
 #splash p {
@@ -158,18 +216,12 @@ nav .nav-right { float: right; margin: 10px 30px; }
   padding-top: 5px;
 }
 
-.stats .plays,
-.stats .likes,
-.stats .comments {
-  font-size: 10px;
-  font-family: 'Bree Serif', serif;
-  letter-spacing: .2em;
-  margin-right: 8px;
+.stats .plays {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: .05em;
+  color: #85DFFF;
 }
-
-.stats .plays { color: #FFAF7A; }
-.stats .likes { color: #85DFFF; }
-.stats .comments { color: #FFF37A; }
 
 /* Other Videos */
 
