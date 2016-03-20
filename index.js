@@ -48,9 +48,7 @@ function displayChannels(channels) {
     option.className = "dropdown-option"
     option.dataset.id = channel.link.substr(channel.link.lastIndexOf("/") + 1)
     option.addEventListener("click", function() {
-      location.href = location.origin + location.pathname 
-                          + "?channel=" + channel.link.substr(channel.link.lastIndexOf("/") + 1)
-                          + "&access_token=" + access_token
+      location.href = location.origin + location.pathname + "?channel=" + channel.link.substr(channel.link.lastIndexOf("/") + 1)
     })
     document.getElementById("all-channels").appendChild(option)
   })
