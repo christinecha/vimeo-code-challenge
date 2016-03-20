@@ -16,20 +16,7 @@ export class VideoFeed extends React.Component {
     }
   }
 
-  changeVideo(direction) {
-    const { featuredVideo, numOfVideos } = this.state
-
-    let prev = featuredVideo - 1
-    let next = featuredVideo + 1
-
-    if (featuredVideo == 0) {
-      prev = numOfVideos - 1
-    } else if (featuredVideo == numOfVideos -1) {
-      next = 0
-    }
-
-    let newVid = direction == "prev" ? prev : next
-
+  changeVideo(newVid) {
     this.setState({
       featuredVideo: newVid
     })
@@ -40,7 +27,11 @@ export class VideoFeed extends React.Component {
 
     return videos.map((video, i) => {
       return (
-        <VideoPreview video={video} key={i} />
+        <VideoPreview
+          video={video}
+          key={i}
+          index={i}
+          changeVideo={(newVid) => this.changeVideo(newVid)} />
       )
     })
   }
@@ -70,7 +61,9 @@ export class VideoFeed extends React.Component {
         <div>
           <VideoFeature
             video={videos[this.state.featuredVideo]}
-            changeVideo={(direction) => this.changeVideo(direction)} />
+            index={this.state.featuredVideo}
+            numOfVideos={this.state.numOfVideos}
+            changeVideo={(newIndex) => this.changeVideo(newIndex)} />
         </div>
         <div className="videoFeed">
           {this.getVideos()}

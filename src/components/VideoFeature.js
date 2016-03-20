@@ -13,8 +13,9 @@ export class VideoFeature extends React.Component {
     }
   }
 
-  componentWillUpdate() {
+  componentWillMount() {
     window.addEventListener("resize", function() {
+      console.log('i', window.innerWidth)
       this.setState({
         screenWidth: window.innerWidth
       })
@@ -27,6 +28,29 @@ export class VideoFeature extends React.Component {
         descriptionExpanded: false
       })
     }
+  }
+
+  getVideoDimensions() {
+    if (this.state.screenWidth < 820) {
+      return [this.state.screenWidth, this.state.screenWidth * 0.6]
+    } else {
+      return [800, 500]
+    }
+  }
+
+  getNewVideo(direction) {
+    const { index, numOfVideos, changeVideo } = this.props
+
+    let prev = index - 1
+    let next = index + 1
+
+    if (index == 0) {
+      prev = numOfVideos - 1
+    } else if (index == numOfVideos -1) {
+      next = 0
+    }
+
+    changeVideo(direction == "prev" ? prev : next)
   }
 
   getDescription() {
@@ -46,7 +70,7 @@ export class VideoFeature extends React.Component {
     const styles = {
       videoFeature: {
         textAlign: "center",
-        width: screenWidth > 850 ? "800px" : screenWidth + "px",
+        width: this.getVideoDimensions()[0] + "px",
         margin: "0 auto",
         display: "inline-block"
       },
@@ -79,14 +103,14 @@ export class VideoFeature extends React.Component {
       <div className="featuredVideoContainer">
         <button
           className="featuredVideoArrow"
-          onClick={() => changeVideo("prev")}>
+          onClick={() => this.getNewVideo("prev")}>
           prev
         </button>
         <div style={styles.videoFeature}>
           <iframe
             src={video ? helper.getPlayerURL(video.uri) : null}
-            width={screenWidth > 820 ? "800" : screenWidth}
-            height={screenWidth > 820 ? "500" : "250"}
+            width={this.getVideoDimensions()[0] + "px"}
+            height={this.getVideoDimensions()[1] + "px"}
             frameBorder="0"
             webkitallowfullscreen
             mozallowfullscreen
@@ -105,7 +129,7 @@ export class VideoFeature extends React.Component {
         </div>
         <button
           className="featuredVideoArrow"
-          onClick={() => changeVideo("next")}>
+          onClick={() => this.getNewVideo("next")}>
           next
         </button>
       </div>

@@ -86,7 +86,6 @@ nav .nav-right { float: right; margin: 10px 30px; }
   right: 30px;
   top: 80px;
   width: 220px;
-  height: 100px;
   color: white;
 }
 
@@ -144,14 +143,14 @@ nav .nav-right { float: right; margin: 10px 30px; }
 /* Splash */
 
 #splash {
-  width: 105%;
+  width: 110%;
   margin: 0 auto;
   position: fixed;
   text-align: center;
   color: white;
   height: 500px;
   top: -30px;
-  left: -2.5%;
+  left: -5%;
   background-image: url('./src/assets/still1.png');
   background-position: 50% 30%;
   transform-origin: 54% 0;
@@ -239,6 +238,7 @@ nav .nav-right { float: right; margin: 10px 30px; }
   text-align: left;
   vertical-align: top;
   color: white;
+  cursor: pointer;
 }
 
 .videoPreview a:hover {
@@ -263,16 +263,21 @@ nav .nav-right { float: right; margin: 10px 30px; }
     display: none;
   }
 
+  #channel-picker { display: none; }
+
   #splash h2 {
     font-size: 100px;
+    margin-top: 200px;
   }
 
-  #splash p {
-    padding: 50px;
-  }
+  #splash p { padding: 0 50px; }
 
   .featuredVideoArrow {
     display: none !important;
+  }
+
+  .videoFeed {
+    height: 680px;
   }
 }
 

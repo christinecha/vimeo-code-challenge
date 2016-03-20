@@ -38,7 +38,7 @@ apiCall(channelInfoURL).then((channel) => {
   if (channelName == "staffpicks") {
     formattedName = "staff picks"
   } else {
-    formattedName = !channel.name || channel.name.length > 25 ? "featured channels" : channel.name
+    formattedName = !channel.name || channel.name.length > 20 ? "featured channels" : channel.name
   }
   document.querySelector("#splash h2").innerHTML = formattedName
 })
