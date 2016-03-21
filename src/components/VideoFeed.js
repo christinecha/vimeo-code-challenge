@@ -27,6 +27,8 @@ export class VideoFeed extends React.Component {
     this.setState({
       featuredVideo: newVid
     })
+    document.querySelector(".featuredVideoContainer").scrollIntoView()
+    // console.log(location.hash)
   }
 
   getPagination() {
