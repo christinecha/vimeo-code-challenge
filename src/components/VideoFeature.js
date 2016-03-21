@@ -15,7 +15,6 @@ export class VideoFeature extends React.Component {
 
   componentWillMount() {
     window.addEventListener("resize", function() {
-      console.log('i', window.innerWidth)
       this.setState({
         screenWidth: window.innerWidth
       })
@@ -54,7 +53,7 @@ export class VideoFeature extends React.Component {
   }
 
   getDescription() {
-    return this.props.video ? this.props.video.description.replace(/<br \/>/g, '\n') : null
+    return this.props.video && this.props.video.description ? this.props.video.description.replace(/<br \/>/g, '\n') : null
   }
 
   toggleDescription() {
@@ -92,7 +91,7 @@ export class VideoFeature extends React.Component {
         textOverflow: "ellipsis",
       },
       readMore: {
-        display: video.description && video.description.length > 100 ? "block" : "none",
+        display: video && video.description && video.description.length > 100 ? "block" : "none",
         position: descriptionExpanded || screenWidth < 820 ? null : "absolute",
         right: "30px",
         margin: descriptionExpanded || screenWidth < 820 ? "20px 0" : "-22px 0"

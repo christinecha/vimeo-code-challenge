@@ -1,6 +1,7 @@
 "use strict"
 
 import React from 'react'
+import * as helper from '../helpers.js'
 import { VideoFeature } from './VideoFeature'
 import { VideoPreview } from './VideoPreview'
 
@@ -10,15 +11,39 @@ export class VideoFeed extends React.Component {
     super(props)
 
     this.state = {
-      featuredVideo: Math.round(Math.random() * (this.props.videos.length - 1)),
-      numOfVideos: this.props.videos.length,
-      buttonText: "show more"
+      featuredVideo: Math.round(Math.random() * (this.props.videos.length - 1))
+    }
+  }
+
+  componentWillUpdate(prevProps) {
+    if (prevProps != this.props) {
+      this.setState({
+        featuredVideo: Math.round(Math.random() * (this.props.videos.length - 1))
+      })
     }
   }
 
   changeVideo(newVid) {
     this.setState({
       featuredVideo: newVid
+    })
+  }
+
+  getPagination() {
+    const { changePage, page, paging } = this.props
+
+    let paginationKey = ["first", "previous", "next", "last"]
+    let key = 0
+
+    return paginationKey.map((link, i) => {
+      return (
+        <button
+          onClick={() => changePage(helper.getURLStringParam(paging[link], "page", 1))}
+          className={!paging[link] ? "inactive pagination" : "pagination"}
+          key={i}>
+          {link}
+        </button>
+      )
     })
   }
 
@@ -36,23 +61,6 @@ export class VideoFeed extends React.Component {
     })
   }
 
-  expandFeed() {
-    let feed = document.querySelector(".videoFeed")
-    let currentHeight = feed.clientHeight
-
-    if (this.state.buttonText == "show more") {
-      feed.style.height = currentHeight + 220 + 'px'
-    } else {
-      feed.style.height = currentHeight - 220 + 'px'
-    }
-
-    if (currentHeight >= 600) {
-      this.setState({ buttonText: "show less" })
-    } else {
-      this.setState({ buttonText: "show more" })
-    }
-  }
-
   render() {
     const { videos } = this.props
 
@@ -62,17 +70,13 @@ export class VideoFeed extends React.Component {
           <VideoFeature
             video={videos[this.state.featuredVideo]}
             index={this.state.featuredVideo}
-            numOfVideos={this.state.numOfVideos}
+            numOfVideos={videos.length}
             changeVideo={(newIndex) => this.changeVideo(newIndex)} />
         </div>
         <div className="videoFeed">
           {this.getVideos()}
         </div>
-        <button
-          className="expandFeed"
-          onClick={() => this.expandFeed()}>
-          {this.state.buttonText}
-        </button>
+        { this.getPagination() }
       </div>
     )
   }
